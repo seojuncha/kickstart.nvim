@@ -1043,3 +1043,13 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     vim.system({ "fcitx5-remote", "-c" }, { detach = true })
   end,
 })
+
+local builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<leader>sa', function()
+    builtin.find_files({
+        no_ignore = true,
+        hidden = true,
+        file_ignore_patterns = { '^.git/' },
+    })
+end, { desc = '[S]earch [A]ll Files' })
